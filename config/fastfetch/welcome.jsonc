@@ -1,0 +1,33 @@
+// compact welcome for new terminals — fastfetch -c ~/.config/fastfetch/welcome.jsonc
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "data",
+    "source": "$2   ·  ──────  ·\n$1  ╱     $3◉$1      ╲\n$1 │   $2·$1      $4○$1   │\n$1  ╲            ╱\n$2   ·  ──────  ·",
+    "color": { "1": "green", "2": "bright_black", "3": "yellow", "4": "cyan" },
+    "padding": { "top": 2, "left": 1, "right": 2 }
+  },
+  "display": {
+    "separator": "  ",
+    "color": { "keys": "green", "title": "bright_green", "separator": "bright_black" },
+    "bar": { "char": { "elapsed": "■", "total": "·" }, "width": 12 },
+    "percent": { "type": 3, "color": { "green": "green", "yellow": "yellow", "red": "red" } }
+  },
+  "modules": [
+    { "type": "command", "key": " ", "keyColor": "bright_green",
+      "text": "h=$(date +%H); [ $h -lt 12 ] && g=morning || { [ $h -lt 18 ] && g=afternoon || g=evening; }; printf 'good %s, %s  ·  %s' $g \"$(u=${USER:-$(id -un)}; n=$(getent passwd \"$u\" | cut -d: -f5 | cut -d, -f1 | cut -d' ' -f1); echo ${n:-$u} | tr A-Z a-z)\" \"$(date '+%a %d %b, %H:%M')\"" },
+    { "type": "custom", "format": "\u001b[90m──────────────────────────────────────────\u001b[0m" },
+    { "type": "os",     "key": "os  ",   "format": "{pretty-name}" },
+    { "type": "kernel", "key": "kern" },
+    { "type": "uptime", "key": "up  " },
+    { "type": "memory", "key": "mem " },
+    { "type": "disk",   "key": "disk", "folders": "/" },
+    { "type": "battery","key": "bat " },
+    { "type": "command","key": "net ",
+      "text": "v=$(nmcli -t -f NAME,TYPE connection show --active 2>/dev/null | grep -iE 'wireguard|vpn|proton' | grep -v killswitch | cut -d: -f1 | head -1); ip=$(ip -4 -br addr show scope global 2>/dev/null | awk '{print $3}' | head -1); printf '%s  ·  vpn %s' \"${ip:-offline}\" \"${v:-off}\"" },
+    { "type": "command","key": "sys ",
+      "text": "u=$(grep -oE '^[0-9]+' /var/lib/update-notifier/updates-available 2>/dev/null | head -1); d=$(mountpoint -q ~/ProtonDrive && echo up || echo down); printf 'updates %s  ·  drive %s' \"${u:-0}\" \"$d\"" },
+    "break",
+    { "type": "colors", "symbol": "circle", "paddingLeft": 0 }
+  ]
+}

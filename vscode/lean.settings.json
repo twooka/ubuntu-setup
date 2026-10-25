@@ -1,0 +1,90 @@
+// VS Code — Lean profile. Managed by ~/dotfiles (ubuntu-setup.sh 9); edit here, then run stage 4.
+{
+    // ── look (matches the desktop: black, JetBrains Mono, sidebar right)
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "workbench.editor.enablePreview": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "toggle",
+    "window.commandCenter": true,
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.lineHeight": 1.5,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.guides.bracketPairs": "active",
+    "editor.renderWhitespace": "boundary",
+    "terminal.integrated.fontFamily": "'JetBrains Mono'",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+
+    // ── housekeeping
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "extensions.ignoreRecommendations": true,
+    "telemetry.telemetryLevel": "off",
+
+    // ── AI: Copilot = inline completions / next-edit, Claude Code = agent
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.agent.maxRequests": 150,
+
+    "workbench.iconTheme": "vscode-icons",
+    // Lean is full of Unicode: JetBrains Mono first, JuliaMono / DejaVu as glyph fallbacks
+    "editor.fontFamily": "'JetBrains Mono', 'JuliaMono', 'DejaVu Sans Mono', monospace",
+    "github.copilot.enable": { "*": true, "lean4": true, "plaintext": false, "markdown": false, "scminput": false },
+
+    // ── editor (Mathlib style: 2 spaces, 100 columns)
+    "[lean4]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.rulers": [100],
+        "editor.wordWrap": "off",
+        "editor.wordBasedSuggestions": "off",
+        "editor.acceptSuggestionOnEnter": "off",                 // Enter = newline, never "accept completion" mid-proof
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "editor.semanticHighlighting.enabled": true
+    },
+    "files.encoding": "utf8",
+
+    // ── Unicode input: \to → →, \R → ℝ … (complete on space/tab)
+    "lean4.input.enabled": true,
+    "lean4.input.leader": "\\",
+    "lean4.input.eagerReplacementEnabled": true,
+
+    // ── InfoView: goal state front and centre
+    "lean4.infoview.autoOpen": true,
+    "lean4.infoview.autoOpenShowsGoal": true,
+    "lean4.infoview.allErrorsOnLine": true,
+    "lean4.infoview.emphasizeFirstGoal": true,
+    "lean4.infoview.showGoalNames": true,
+    "lean4.infoview.expectedTypeVisibility": "Expanded by default",
+    "lean4.infoview.hideInstanceAssumptions": false,
+    "lean4.infoview.messageOrder": "Sort by proximity to text cursor",
+    "lean4.showUnsolvedGoalsDecoration": true,
+    "lean4.goalsAccomplishedDecorationKind": "Double Checkmark",
+
+    // ── toolchain: never build Mathlib from source by accident (use `lake exe cache get`)
+    "lean4.automaticallyBuildDependencies": false,
+    "lean4.alwaysAskBeforeInstallingLeanVersions": true,
+
+    // ── .lake holds GBs of Mathlib oleans: don't watch or search it
+    "files.watcherExclude": { "**/.lake/**": true, "**/lake-packages/**": true },
+    "search.exclude": { "**/.lake": true, "**/lake-packages": true },
+    "[toml]": { "editor.defaultFormatter": "tamasfe.even-better-toml" },
+
+    // ── agent: let Claude run the type checker freely
+    "chat.tools.terminal.autoApprove": {
+        "ls": true, "pwd": true, "cat": true, "head": true, "tail": true, "grep": true, "rg": true,
+        "git status": true, "git diff": true, "git log": true,
+        "lake build": true, "lake env lean": true, "lake exe cache get": true, "lean --version": true,
+        "rm": false, "curl": false, "wget": false, "sudo": false
+    }
+}

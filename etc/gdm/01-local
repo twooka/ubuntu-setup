@@ -1,0 +1,14 @@
+[com/ubuntu/login-screen]
+background-color='#000000'
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+accent-color='green'
+clock-show-weekday=true
+font-name='Inter 11'
+
+[org/gnome/desktop/peripherals/touchpad]
+tap-to-click=true
+
+[org/gnome/login-screen]
+logo=''

@@ -1,0 +1,59 @@
+# Coding profile
+# ── AI
+anthropic.claude-code
+github.copilot
+github.copilot-chat
+# ── editor-wide
+usernamehw.errorlens             # diagnostics inline
+editorconfig.editorconfig        # respect each repo's .editorconfig
+aaron-bond.better-comments
+vscode-icons-team.vscode-icons
+hverlin.mise-vscode              # mise-managed tool versions / tasks / env
+tamasfe.even-better-toml
+redhat.vscode-yaml               # schemas for compose, GitHub Actions, k8s
+mikestead.dotenv
+# ── git
+eamodio.gitlens
+mhutchie.git-graph
+# ── JS / TS / web
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+yoavbls.pretty-ts-errors
+bradlc.vscode-tailwindcss
+stivo.tailwind-fold
+burkeholland.simple-react-snippets
+nhedger.inertia
+# ── PHP / Laravel
+bmewburn.vscode-intelephense-client
+xdebug.php-debug
+recca0120.vscode-phpunit
+neilbrayfield.php-docblocker
+mehedidracula.php-namespace-resolver
+mrchetan.phpstorm-parameter-hints-in-vscode
+onecentlin.laravel-blade
+shufo.vscode-blade-formatter
+amiralizadeh9480.laravel-extra-intellisense
+codingyu.laravel-goto-view
+ctf0.laravel-goto-controller
+ryannaddy.laravel-artisan
+# ── Python / data
+ms-python.python
+ms-python.vscode-pylance
+ms-python.debugpy
+ms-python.vscode-python-envs
+charliermarsh.ruff               # lint + format + import sorting (replaces isort)
+kevinrose.vsc-python-indent
+ms-toolsai.jupyter
+google.colab
+# ── C / C++, Dart, Lean
+ms-vscode.cpptools
+dart-code.dart-code
+leanprover.lean4
+# ── containers, remote, APIs, data
+ms-azuretools.vscode-containers  # Container Tools (works with Podman via DOCKER_HOST)
+docker.docker                    # Dockerfile / compose language server
+ms-vscode-remote.remote-containers
+ms-vscode-remote.remote-ssh      # edit directly on DigitalOcean droplets
+rangav.vscode-thunder-client
+yy0931.vscode-sqlite3-editor
+stripe.vscode-stripe

@@ -1,0 +1,22 @@
+# ML Code profile
+anthropic.claude-code
+github.copilot
+github.copilot-chat
+ms-python.python
+ms-python.vscode-pylance
+ms-python.debugpy
+ms-python.vscode-python-envs
+charliermarsh.ruff               # lint + format + imports, also inside notebooks
+ms-toolsai.jupyter               # notebooks, interactive window, variable explorer
+ms-toolsai.datawrangler          # DataFrame viewer/cleaner that generates pandas code
+ms-toolsai.tensorboard
+google.colab                     # run notebooks on Colab GPUs/TPUs from VS Code
+njpwerner.autodocstring
+mechatroner.rainbow-csv
+tamasfe.even-better-toml
+usernamehw.errorlens
+editorconfig.editorconfig
+eamodio.gitlens
+ms-vscode-remote.remote-ssh      # GPU servers
+ms-vscode-remote.remote-containers
+vscode-icons-team.vscode-icons

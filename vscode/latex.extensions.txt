@@ -1,0 +1,8 @@
+# LaTeX profile — writing maths
+james-yu.latex-workshop          # build, live PDF tab, SyncTeX, math hover/preview panel, latexindent, bib formatting
+ltex-plus.vscode-ltex-plus       # offline grammar/spell check that understands LaTeX (LanguageTool)
+anthropic.claude-code            # Claude, integrated
+github.copilot                   # inline completions (also great for LaTeX boilerplate)
+github.copilot-chat
+leanprover.lean4                 # Lean 4 (only activates on .lean files)
+emmanuelbeziat.vscode-great-icons

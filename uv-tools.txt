@@ -1,0 +1,4 @@
+gnome-extensions-cli
+jupyterlab
+pre-commit
+ruff

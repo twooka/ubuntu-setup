@@ -1,0 +1,12 @@
+# global defaults — projects override with their own mise.toml (`mise use node@22`)
+[tools]
+node = "lts"
+pnpm = "latest"
+go = "latest"
+bun = "latest"
+doctl = "latest"
+gh = "latest"
+"npm:vercel" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]   # honour .nvmrc / .node-version

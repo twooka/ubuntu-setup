@@ -1,0 +1,110 @@
+// VS Code — ML Code profile. Managed by ~/dotfiles (ubuntu-setup.sh 9); edit here, then run stage 4.
+{
+    // ── look (matches the desktop: black, JetBrains Mono, sidebar right)
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "workbench.editor.enablePreview": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "toggle",
+    "window.commandCenter": true,
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.lineHeight": 1.5,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.guides.bracketPairs": "active",
+    "editor.renderWhitespace": "boundary",
+    "terminal.integrated.fontFamily": "'JetBrains Mono'",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+
+    // ── housekeeping
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "extensions.ignoreRecommendations": true,
+    "telemetry.telemetryLevel": "off",
+
+    // ── AI: Copilot = inline completions / next-edit, Claude Code = agent
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.agent.maxRequests": 150,
+
+    "workbench.iconTheme": "vscode-icons",
+    "github.copilot.enable": { "*": true, "plaintext": false, "markdown": false, "scminput": false },
+
+    // ── Python: Ruff formats/lints/sorts, PEP 8 spaces (unlike the Coding profile's tabs)
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.rulers": [88],
+    "editor.inlayHints.enabled": "onUnlessPressed",
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": { "source.fixAll.ruff": "explicit", "source.organizeImports.ruff": "explicit" }
+    },
+    "ruff.configurationPreference": "filesystemFirst",          // pyproject.toml wins
+    "[toml]": { "editor.defaultFormatter": "tamasfe.even-better-toml" },
+
+    // ── Pylance tuned for ML libraries (loosely typed, deep packages)
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.indexing": true,
+    "python.analysis.packageIndexDepths": [
+        { "name": "torch", "depth": 4, "includeAllSymbols": true },
+        { "name": "sklearn", "depth": 3, "includeAllSymbols": true },
+        { "name": "transformers", "depth": 3 },
+        { "name": "jax", "depth": 3 },
+        { "name": "lightning", "depth": 3 }
+    ],
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.callArgumentNames": "partial",
+    "python.testing.pytestEnabled": true,
+    "autoDocstring.docstringFormat": "google",
+
+    // ── notebooks
+    "workbench.editorAssociations": { "*.ipynb": "jupyter.notebook.ipynb" },
+    "notebook.formatOnSave.enabled": true,
+    "notebook.codeActionsOnSave": { "notebook.source.fixAll": "explicit", "notebook.source.organizeImports": "explicit" },
+    "notebook.lineNumbers": "on",
+    "notebook.stickyScroll.enabled": true,
+    "notebook.output.scrolling": true,
+    "notebook.output.wordWrap": true,
+    "notebook.diff.ignoreMetadata": true,                      // git diffs show code, not execution counts
+    "notebook.diff.ignoreOutputs": true,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.themeMatplotlibPlots": true,
+    // `# %%` cells in .py files: Shift+Enter runs the cell in an Interactive Window (one per file)
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+
+    // ── remote GPU boxes: these get installed automatically over SSH
+    "remote.SSH.defaultExtensions": ["ms-python.python", "ms-python.vscode-pylance", "charliermarsh.ruff", "ms-toolsai.jupyter"],
+
+    // ── keep datasets, checkpoints and run logs out of watching/search/explorer
+    "files.exclude": { "**/__pycache__": true, "**/.ipynb_checkpoints": true, "**/.pytest_cache": true, "**/.ruff_cache": true, "**/.mypy_cache": true },
+    "files.watcherExclude": {
+        "**/.venv/**": true, "**/data/**": true, "**/datasets/**": true, "**/checkpoints/**": true,
+        "**/wandb/**": true, "**/mlruns/**": true, "**/lightning_logs/**": true, "**/runs/**": true, "**/outputs/**": true
+    },
+    "search.exclude": {
+        "**/.venv": true, "**/data": true, "**/datasets": true, "**/checkpoints": true,
+        "**/wandb": true, "**/mlruns": true, "**/lightning_logs": true, "**/runs": true, "**/outputs": true, "**/*.ipynb": false
+    },
+    "files.associations": { "*.jsonl": "jsonl" },
+
+    // ── agent
+    "chat.tools.terminal.autoApprove": {
+        "ls": true, "pwd": true, "cat": true, "head": true, "tail": true, "wc": true, "grep": true, "rg": true,
+        "git status": true, "git diff": true, "git log": true,
+        "uv sync": true, "uv run": true, "uv add": true, "ruff": true, "nvidia-smi": true,
+        "rm": false, "curl": false, "wget": false, "sudo": false
+    }
+}

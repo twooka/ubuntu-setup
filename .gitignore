@@ -1,0 +1,5 @@
+rclone.conf
+*.bak.*
+.gitconfig.local
+config/gtk-3.0/
+config/systemd-user/openclaw-gateway.service

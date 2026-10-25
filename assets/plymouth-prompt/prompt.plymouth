@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Prompt
+Description=Terminal prompt that types the boot state, with a blinking cursor
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/prompt
+ScriptFile=/usr/share/plymouth/themes/prompt/prompt.script

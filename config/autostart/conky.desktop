@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Conky
+Exec=sh -c "sleep 4 && conky -d -c /home/valebadda/.config/conky/conky.conf"
+X-GNOME-Autostart-enabled=true

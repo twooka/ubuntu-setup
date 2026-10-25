@@ -1,0 +1,9 @@
+# Lean profile
+leanprover.lean4                 # LSP, InfoView, Unicode input, Mathlib docs, toolchain manager
+anthropic.claude-code
+github.copilot
+github.copilot-chat
+tamasfe.even-better-toml         # lakefile.toml
+mhutchie.git-graph
+editorconfig.editorconfig
+vscode-icons-team.vscode-icons

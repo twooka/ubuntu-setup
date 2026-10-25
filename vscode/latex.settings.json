@@ -1,0 +1,97 @@
+// VS Code — LaTeX profile. Managed by ~/dotfiles (ubuntu-setup.sh 9); edit here, then run stage 4.
+{
+    // ── look (matches the desktop: black, JetBrains Mono, sidebar right)
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "workbench.editor.enablePreview": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "toggle",
+    "window.commandCenter": true,
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.lineHeight": 1.5,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.guides.bracketPairs": "active",
+    "editor.renderWhitespace": "boundary",
+    "terminal.integrated.fontFamily": "'JetBrains Mono'",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+
+    // ── housekeeping
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "extensions.ignoreRecommendations": true,
+    "telemetry.telemetryLevel": "off",
+
+    // ── AI: Copilot = inline completions / next-edit, Claude Code = agent
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.agent.maxRequests": 150,
+
+    "workbench.iconTheme": "vscode-great-icons",
+    "github.copilot.enable": { "*": true, "latex": true, "bibtex": false, "plaintext": false, "markdown": true, "scminput": false },
+
+    // ── live compile: autosave every second → LaTeX Workshop rebuilds on change
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.autoBuild.interval": 1000,
+    "latex-workshop.latex.recipe.default": "first",          // latexmk
+    "latex-workshop.latex.outDir": "%DIR%/build",            // aux files out of the source tree
+    "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.latex.clean.fileTypes": ["*.aux", "*.bbl", "*.blg", "*.log", "*.out", "*.toc", "*.synctex.gz", "*.fls", "*.fdb_latexmk"],
+    "latex-workshop.latex.watch.files.ignore": ["**/*.aux", "**/build/**"],
+    "latex-workshop.message.badbox.show": "none",
+
+    // ── live viewer: PDF tab on the right, SyncTeX both ways
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.tab.editorGroup": "right",
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "latex-workshop.synctex.afterBuild.enabled": true,       // PDF follows the cursor after each build
+    "latex-workshop.view.pdf.invertMode.enabled": "auto",    // dark PDF with a dark theme (Ctrl+Shift+P → toggle if figures look odd)
+
+    // ── instant math rendering while typing
+    "latex-workshop.hover.preview.enabled": true,
+    "latex-workshop.mathpreviewpanel.cursor.enabled": true,  // "Open Math Preview Panel": renders the formula under the cursor live
+
+    // ── intellisense
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.intellisense.unimathsymbols.enabled": true,
+
+    // ── formatting & indentation (Ctrl+S formats; the 1 s autosave does not)
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.formatting.latexindent.path": "latexindent",
+    "latex-workshop.formatting.latexindent.args": ["-c", "%DIR%/", "%TMPFILE%", "-y=defaultIndent: '%INDENT%'"],
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 100,
+        "editor.wrappingIndent": "indent",
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
+    "[bibtex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.formatOnSave": true
+    },
+    "latex-workshop.bibtex-format.sort.enabled": true,
+    "latex-workshop.bibtex-format.trailingComma": true,
+
+    // ── grammar & spelling (LTeX+, offline; first start downloads LanguageTool)
+    "ltex.language": "en-US",
+    "ltex.enabled": ["latex", "bibtex", "markdown"],
+    "ltex.checkFrequency": "save",
+    "ltex.additionalRules.motherTongue": "it"
+}

@@ -1,0 +1,98 @@
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+W = Window.GetWidth();
+H = Window.GetHeight();
+X0 = Window.GetX();
+Y0 = Window.GetY();
+s = H / 1080 * 0.5;
+if (s < 0.3) s = 0.3;
+
+P = 40 * s;
+GAP = 33 * s;
+CHEV_DY = 2 * s;
+CUR_DY = 78 * s;
+TH = 193 * s;
+
+fun load(name) {
+  img = Image(name);
+  return img.Scale(Math.Int(img.GetWidth() * s), Math.Int(img.GetHeight() * s));
+}
+
+mode = Plymouth.GetMode();
+key = "boot";
+n = 7;
+if (mode == "shutdown") { key = "halt"; n = 13; }
+if (mode == "reboot") { key = "reboot"; n = 9; }
+
+i = 0;
+while (i <= n) {
+  frames[i] = load(key + "_" + i + ".png");
+  i++;
+}
+
+chev_img = load("chevron.png");
+cur_img = load("cursor.png");
+
+full_adv = frames[n].GetWidth() - 2 * P;
+total = (chev_img.GetWidth() - 2 * P) + GAP + full_adv + GAP / 3 + (cur_img.GetWidth() - 2 * P);
+X = X0 + W / 2 - total / 2 - P;
+TOP = Y0 + H / 2 - TH / 2;
+TX = X + chev_img.GetWidth() - 2 * P + GAP;
+
+chev = Sprite(chev_img);
+chev.SetPosition(X, TOP + CHEV_DY, 1);
+text = Sprite(frames[0]);
+text.SetPosition(TX, TOP, 1);
+cur = Sprite(cur_img);
+cur.SetPosition(TX + P - P + GAP / 3, TOP + CUR_DY, 2);
+
+global.t = 0;
+fun refresh_cb() {
+  global.t = global.t + 1;
+  t = global.t;
+  k = Math.Int((t - 25) / 5);
+  if (k < 0) k = 0;
+  if (k > n) k = n;
+  text.SetImage(frames[k]);
+  cur.SetX(TX + frames[k].GetWidth() - P + GAP / 3 - P);
+  if (k < n) {
+    cur.SetOpacity(1);
+  } else {
+    blink = Math.Int(t / 25) - 2 * Math.Int(t / 50);
+    cur.SetOpacity(1 - blink);
+  }
+}
+Plymouth.SetRefreshFunction(refresh_cb);
+
+pass_frames_n = 11;
+pass_img = load("pass_" + pass_frames_n + ".png");
+bullet_img = load("bullet.png");
+pass_spr = Sprite(pass_img);
+pass_spr.SetPosition(X0 + W / 2 - pass_img.GetWidth() / 2, TOP + TH + 40 * s, 3);
+pass_spr.SetOpacity(0);
+
+fun display_password_cb(prompt, bullets) {
+  pass_spr.SetOpacity(1);
+  bw = bullet_img.GetWidth() - 2 * P + 12 * s;
+  bx = X0 + W / 2 - (bullets * bw) / 2 - P;
+  j = 0;
+  while (j < bullets || global.bullet_spr[j]) {
+    if (!global.bullet_spr[j]) global.bullet_spr[j] = Sprite(bullet_img);
+    global.bullet_spr[j].SetPosition(bx + j * bw, TOP + TH + 40 * s + pass_img.GetHeight() - P, 3);
+    if (j < bullets) global.bullet_spr[j].SetOpacity(1); else global.bullet_spr[j].SetOpacity(0);
+    j++;
+  }
+}
+
+fun display_normal_cb() {
+  pass_spr.SetOpacity(0);
+  j = 0;
+  while (global.bullet_spr[j]) {
+    global.bullet_spr[j].SetOpacity(0);
+    j++;
+  }
+}
+
+Plymouth.SetDisplayPasswordFunction(display_password_cb);
+Plymouth.SetDisplayNormalFunction(display_normal_cb);

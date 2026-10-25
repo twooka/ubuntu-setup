@@ -1,0 +1,140 @@
+// VS Code — Coding profile. Managed by ~/dotfiles (ubuntu-setup.sh 9); edit here, then run stage 4.
+{
+    // ── look (matches the desktop: black, JetBrains Mono, sidebar right)
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "workbench.editor.enablePreview": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "toggle",
+    "window.commandCenter": true,
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.lineHeight": 1.5,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.guides.bracketPairs": "active",
+    "editor.renderWhitespace": "boundary",
+    "terminal.integrated.fontFamily": "'JetBrains Mono'",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+
+    // ── housekeeping
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "extensions.ignoreRecommendations": true,
+    "telemetry.telemetryLevel": "off",
+
+    // ── AI: Copilot = inline completions / next-edit, Claude Code = agent
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.agent.maxRequests": 150,
+
+    "workbench.iconTheme": "vscode-icons",
+    "github.copilot.enable": { "*": true, "plaintext": false, "markdown": false, "scminput": false },
+
+    // ── formatting (your style kept: tabs, width 4; repos override via .editorconfig / .prettierrc)
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modificationsIfAvailable",   // in git repos only touch lines you changed → clean client diffs
+    "editor.codeActionsOnSave": { "source.fixAll": "explicit" },
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "editor.inlayHints.enabled": "onUnlessPressed",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.useTabs": true,
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 120,
+    "prettier.arrowParens": "avoid",
+    "prettier.singleAttributePerLine": true,
+    "[html]": { "editor.defaultFormatter": "vscode.html-language-features" },
+    "[php]": { "editor.defaultFormatter": "bmewburn.vscode-intelephense-client" },
+    "[blade]": { "editor.defaultFormatter": "shufo.vscode-blade-formatter" },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnType": true,
+        "editor.insertSpaces": true,
+        "editor.codeActionsOnSave": { "source.fixAll.ruff": "explicit", "source.organizeImports.ruff": "explicit" }
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true
+    },
+    "[toml]": { "editor.defaultFormatter": "tamasfe.even-better-toml" },
+    "[yaml]": { "editor.defaultFormatter": "redhat.vscode-yaml", "editor.insertSpaces": true, "editor.tabSize": 2 },
+    "[dart]": { "editor.defaultFormatter": "Dart-Code.dart-code", "editor.insertSpaces": true, "editor.tabSize": 2 },
+
+    // ── languages
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "C_Cpp.default.cppStandard": "c++20",
+    "intelephense.diagnostics.undefinedMethods": false,
+    "intelephense.files.exclude": ["**/.git/**", "**/node_modules/**", "**/.history/**", "**/storage/framework/**"],
+    "phpParameterHint.showDollarSign": true,
+    "stripe.enableIntegrationGuides": true,
+    "debug.onTaskErrors": "abort",
+
+    // ── containers: Podman behind the Docker API (DOCKER_HOST set by the setup script)
+    "dev.containers.dockerPath": "podman",
+    "dev.containers.dockerComposePath": "podman-compose",
+
+    // ── performance: don't watch/search dependency trees
+    "files.watcherExclude": { "**/node_modules/**": true, "**/vendor/**": true, "**/.venv/**": true, "**/build/**": true, "**/dist/**": true },
+    "search.exclude": { "**/node_modules": true, "**/vendor": true, "**/.venv": true, "**/dist": true, "**/build": true },
+
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb",
+        "*.sqlite": "sqlite3-editor.editor",
+        "*.copilotmd": "vscode.markdown.preview.editor"
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.js",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock, .npmrc",
+        "composer.json": "composer.lock",
+        "pyproject.toml": "uv.lock, .python-version",
+        "mise.toml": ".mise.toml, mise.local.toml",
+        "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
+        "*.dart": "${capture}.g.dart",
+        "*.sqlite": "${capture}.${extname}-*",
+        "*.db": "${capture}.${extname}-*"
+    },
+
+    // ── agent: read-only/safe commands run without asking; anything destructive or networked asks
+    "chat.tools.terminal.autoApprove": {
+        "cd": true, "echo": true, "ls": true, "pwd": true, "cat": true, "head": true, "tail": true, "wc": true,
+        "which": true, "stat": true, "file": true, "du": true, "df": true, "grep": true, "rg": true, "tree": true,
+        "find": true, "/^find\\b.*-(delete|exec|execdir|ok|okdir|fprint)\\b/": false,
+        "sort": true, "/^sort\\b.*-(o|S)\\b/": false,
+        "date": true, "/^date\\b.*(-s|--set)\\b/": false,
+        "git status": true, "git log": true, "git show": true, "git diff": true, "git grep": true,
+        "git branch": true, "/^git branch\\b.*-(d|D|m|M|-delete|-force)\\b/": false,
+        "npm run": true, "npm install": true, "npx tsc": true,
+        "pnpm install": true, "pnpm run": true, "pnpm lint": true, "pnpm test": true, "pnpm build": true, "pnpm dev": true,
+        "uv sync": true, "uv run": true, "uv add": true, "ruff": true,
+        "php artisan": true, "/^php artisan\\b.*(migrate:fresh|migrate:reset|db:wipe|db:seed)\\b/": false,
+        "composer install": true, "composer dump-autoload": true,
+        "lake build": true,
+        "/\\(.+\\)/s": { "approve": false, "matchCommandLine": true },
+        "/\\{.+\\}/s": { "approve": false, "matchCommandLine": true },
+        "/`.+`/s": { "approve": false, "matchCommandLine": true },
+        "rm": false, "rmdir": false, "dd": false, "kill": false, "chmod": false, "chown": false,
+        "curl": false, "wget": false, "eval": false, "xargs": false, "sudo": false
+    }
+}
